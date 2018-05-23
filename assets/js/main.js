@@ -147,25 +147,24 @@
       }, 1000);
 
       if (!Modernizr.touchevents) {
-        var masonryInit = true; // set Masonry init flag
-
-        if ($(".masonry-grid").length) {
-          var $container = $(".alm-listing"); // our container
-          if (masonryInit) {
-            // initialize Masonry only once
-            masonryInit = false;
-            $container.masonry({
-              itemSelector: ".alm-repeater-template",
-              gutter: 0
-            });
-          } else {
-            $container.masonry("reloadItems"); // Reload masonry items oafter callback
-          }
-          $container.imagesLoaded(function() {
-            // When images are loaded, fire masonry again.
-            $container.masonry();
-          });
-        }
+        // var masonryInit = true; // set Masonry init flag
+        // if ($(".masonry-grid").length) {
+        //   var $container = $(".alm-listing"); // our container
+        //   if (masonryInit) {
+        //     // initialize Masonry only once
+        //     masonryInit = false;
+        //     $container.masonry({
+        //       itemSelector: ".alm-repeater-template",
+        //       gutter: 0
+        //     });
+        //   } else {
+        //     $container.masonry("reloadItems"); // Reload masonry items oafter callback
+        //   }
+        //   $container.imagesLoaded(function() {
+        //     // When images are loaded, fire masonry again.
+        //     $container.masonry();
+        //   });
+        // }
       }
 
       //keep one animation running until another one gets hovered
