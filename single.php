@@ -21,19 +21,19 @@ if (have_rows('carousel_gallery')):
 
             $carouselimage = get_sub_field('gallery_image');?>
 
-																																																															<img src="<?php echo $carouselimage['url']; ?>" alt="<?php echo $carouselimage['alt']; ?>">
+																																																																																	<img src="<?php echo $carouselimage['url']; ?>" alt="<?php echo $carouselimage['alt']; ?>">
 
-																																																																								                                    <?php
+																																																																																										                                    <?php
 
         elseif (get_row_layout() == 'video_container'):
 
             $carouselvid = get_sub_field('gallery_video');
             ?>
 
-																																																																								                                    <?php if (!wp_is_mobile()): ?>
-																																																																								                                        <div class="single-video-wrapper">
-																																																																								                                            <img class="ratio" src="<?php bloginfo('template_directory');?>/assets/images/16x9.png"/>
-																																																																								                                            <?php
+																																																																																										                                    <?php if (!wp_is_mobile()): ?>
+																																																																																										                                        <div class="single-video-wrapper">
+																																																																																										                                            <img class="ratio" src="<?php bloginfo('template_directory');?>/assets/images/16x9.png"/>
+																																																																																										                                            <?php
 
             // use preg_match to find iframe src
             preg_match('/src="(.+?)"/', $carouselvid, $matches);
@@ -59,11 +59,11 @@ if (have_rows('carousel_gallery')):
             echo $carouselvid;
 
             ?>
-																																																																								                                        </div>
-																																																																								                                    <?php else: ?>
-																																																                                        <div class="single-video-wrapper">
-																																																                                            <img class="ratio" src="<?php bloginfo('template_directory');?>/assets/images/16x9.png"/>
-																																																                                            <?php
+																																																																																										                                        </div>
+																																																																																										                                    <?php else: ?>
+																																																												                                        <div class="single-video-wrapper">
+																																																												                                            <img class="ratio" src="<?php bloginfo('template_directory');?>/assets/images/16x9.png"/>
+																																																												                                            <?php
 
         // use preg_match to find iframe src
         preg_match('/src="(.+?)"/', $carouselvid, $matches);
@@ -93,10 +93,10 @@ if (have_rows('carousel_gallery')):
         echo $carouselvid;
 
         ?>
-																																																                                        </div>
-																																																                                    <?php endif;?>
+																																																												                                        </div>
+																																																												                                    <?php endif;?>
 
-																								                                    <?php
+																														                                    <?php
 endif;
 
 endwhile;
@@ -186,32 +186,42 @@ if ($typeofwork): ?>
 
                 </div>
                 <?php
+ini_set("display_errors", 1);
 $post_id = get_the_ID();
-$original_query = $wp_query;
-$wp_query = null;
-$args = array('posts_per_page' => 6);
-$wp_query = new WP_Query($args);
 
-?>
-                <div class="more-works">
+$cat_id = get_the_category($post_id);
+$term_id = $cat_id[0]->term_id;
+$good = array(29, 15);
+if (in_array($term_id, $good)):
 
-                  <?php foreach ($wp_query->posts as $post): ?>
+    $original_query = $wp_query;
+    $wp_query = null;
+    $args = array('posts_per_page' => 6);
+    $wp_query = new WP_Query($args);
 
-                    <div class="entry-content col-sm-12 col-lg-4">
-                      <a href="<?=get_the_permalink();?>" rel="bookmark"></a>
-                      <?php if (has_post_thumbnail($post->ID)): ?>
-                      <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');?>
-                      <img src="<?php echo $image[0]; ?>" alt="">
-                      <?php endif;?>
+    ?>
+	                <div class="more-works">
+
+	                  <?php foreach ($wp_query->posts as $post): ?>
+
+	                    <div class="entry-content col-sm-12 col-lg-4">
+	                      <a href="<?=get_the_permalink();?>" rel="bookmark"></a>
+	                      <?php if (has_post_thumbnail($post->ID)): ?>
+	                      <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');?>
+	                      <img src="<?php echo $image[0]; ?>" alt="">
+	                      <?php endif;?>
                       <div class="entry-titles">
                         <h3 class="entry-title">Dior</h3>
                         <h3><?=$post->post_title;?></h3>
                       </div>
                     </div>
 
-                  <?php endforeach;?>
+                  <?php endforeach;
+
+?>
 
                 </div>
+                <?php endif;?>
             </div>
         </main>
     </div>

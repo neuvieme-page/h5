@@ -683,7 +683,7 @@ th {
     float: left;
   }
   .col-sm-12 {
-    width: 100%;
+    width: 50%;
   }
   .col-sm-11 {
     width: 91.66666667%;
@@ -1153,8 +1153,10 @@ th {
   }
 }
 img {
-    max-width:100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
 }
 .row {
   margin-right: -10px;
@@ -1200,11 +1202,11 @@ html {
 }
 .embed-container { 
   position: relative; 
-  padding-bottom: 56.25%;
-  height: 0;
+  /* padding-bottom: 56.25%;
+  height: 0; */
   overflow: hidden;
   max-width: 100%;
-  height: 176px;
+  height: 100%;
 } 
 
 .embed-container iframe,
@@ -1284,14 +1286,28 @@ h1.entry-title {
   height:100%;
 }
 .blackframe {
-    background: #000;
     z-index: 9999;
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
-        height: 26px;
+    height: 100%;
+    display: none;
 }
+
+.blackframe:before {
+  content: '';
+  width: 100%;
+  height: 22px;
+  background: #000;
+  z-index: 9999;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 26px;
+}
+
 .blackframe:after {
     content: '';
     width: 100%;
@@ -1301,7 +1317,7 @@ h1.entry-title {
     position: absolute;
     left: 0;
     right: 0;
-    top: 575%;
+    bottom: 0;
     height: 26px;
 }
 .clientbox:first-of-type {
@@ -1316,8 +1332,19 @@ a {
 }
 .alm-reveal .col-sm-12,
 .alm-reveal .col-sm-4 {
-  min-height:280px;
-  /* height: 330px; */
+  /* height: 280px; */
+  margin-top: 50px;
+}
+
+.entry-content {
+  transition: opacity 100ms;
+}
+.entry-content:hover {
+  opacity: 0.9;
+}
+
+.entry-content a {
+  display: block;
 }
 
 .alm-reveal {
@@ -1344,11 +1371,24 @@ a {
 }
 .col-lg-4.col-xs-6.entry-content a {
   display:block;
+
+}
+.col-lg-4.col-xs-6.entry-content .big-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
 .alm-reveal img {
   width: 100%;
   max-width: 100%;
   object-fit:cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
 }
 .heavy {
   text-transform:uppercase;
@@ -1469,7 +1509,7 @@ p.heading > a:active:before {
 }
 .entry-titles {
     margin: 7px 0;
-    min-height: 50px;    
+    /* min-height: 50px;     */
 }
 .entry-titles > .entry-title {
   text-transform:uppercase;
@@ -1683,14 +1723,19 @@ button.alm-load-more-btn {
     top:-200%;
 }
 
-
+.hover {
+  position: relative;
+  padding-bottom: 60%;
+  z-index: 1;
+}
 .post-slides {
     overflow: hidden;
-    height: 176px;
-    width: calc(100% - 20px);
-    left:10px;
+    /* height: 176px; */
+    width: 100%;
+    left:0px;
     position: absolute;
     top: 0;
+    height: 100%;
 }
 .post-slides-inner {
     position: relative;
@@ -1700,18 +1745,19 @@ button.alm-load-more-btn {
     left: 0;
     margin: 0;
     padding: 0;
-    height: 176px;
+    /* height: 176px; */
     width: 100%;
     overflow: hidden;
     z-index: 9;
     display:block;
     max-width: 100%;
+    height: 100%;
 }
 .post-slides-inner > img {
     display: block;
     opacity:0;
     width:100%;
-    height:176px;
+    /* height:176px; */
     top: 0;
     bottom:0;
     left: 0;
@@ -1786,7 +1832,7 @@ button.alm-load-more-btn.done {
     background: #fff;
     position: fixed;
     top: 0;
-    transition: top 0.3s ease-in-out;
+    transition: top 0.2s cubic-bezier(0.82, 0, 0.2, 0.98);
     width: 100%;
     z-index: 9990;
 }
@@ -2704,6 +2750,7 @@ p.entry-second {
     height: auto;  
     /*max-height: 131px;*/
     max-width: 100%;
+    position: relative;
   }  
   .alm-reveal video {
     width: 100%;
@@ -2717,6 +2764,7 @@ p.entry-second {
   .alm-reveal .col-sm-12, .alm-reveal .col-sm-4 {
     min-height:230px;
     width: 50%;
+    height: auto;
   }
 }
 
@@ -2800,6 +2848,7 @@ p.entry-second {
       overflow: hidden;
       display: block;
       margin-bottom:10px;
+      height: auto;
       min-height: 140px;
   }
   .alm-reveal img {
@@ -2989,9 +3038,9 @@ p.entry-second {
     -webkit-flex-wrap: nowrap;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    -webkit-justify-content: space-between;
+    -webkit-justify-content: space-around;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: space-around;
     -webkit-align-content: flex-start;
     -ms-flex-line-pack: start;
     align-content: flex-start;
