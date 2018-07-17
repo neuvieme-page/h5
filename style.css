@@ -1333,7 +1333,10 @@ a {
 .alm-reveal .col-sm-12,
 .alm-reveal .col-sm-4 {
   /* height: 280px; */
+<<<<<<< HEAD
   margin-top: 50px;
+=======
+>>>>>>> 32e7d13bf6007a605cf1a7c45d1ca06219e6b5f0
 }
 
 .entry-content {
