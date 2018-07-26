@@ -3415,3 +3415,7 @@ p.entry-second {
 .more-works .entry-content:hover {
   opacity: 0.9;
 }
+
+.row--intro {
+  margin-bottom: 95px;
+}

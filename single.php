@@ -4,145 +4,21 @@
         <main class="site-main" role="main">
             <div class="container" id="content">
                 <div id="post-<?php the_ID();?>" <?php post_class();?>>
-
-                <div class="sliderwrapper">
-                    <div class="slider">
-
-                        <?php
-
-// check if the flexible content field has rows of data
-if (have_rows('carousel_gallery')):
-
-    // loop through the rows of data
-    while (have_rows('carousel_gallery')): the_row();
-
-        if (get_row_layout() == 'image_container'):
-
-            $carouselimage = get_sub_field('gallery_image');?>
-
-																																																																																	<img src="<?php echo $carouselimage['url']; ?>" alt="<?php echo $carouselimage['alt']; ?>">
-
-																																																																																										                                    <?php
-
-        elseif (get_row_layout() == 'video_container'):
-
-            $carouselvid = get_sub_field('gallery_video');
-            ?>
-
-																																																																																										                                    <?php if (!wp_is_mobile()): ?>
-																																																																																										                                        <div class="single-video-wrapper">
-																																																																																										                                            <img class="ratio" src="<?php bloginfo('template_directory');?>/assets/images/16x9.png"/>
-																																																																																										                                            <?php
-
-            // use preg_match to find iframe src
-            preg_match('/src="(.+?)"/', $carouselvid, $matches);
-            $src = $matches[1];
-
-            // add extra params to iframe src
-            $params = array(
-                'controls' => 1,
-                'hd' => 1,
-                'fullscreen' => true,
-            );
-
-            $new_src = add_query_arg($params, $src);
-
-            $carouselvid = str_replace($src, $new_src, $carouselvid);
-
-            // add extra attributes to iframe html
-            $attributes = 'id="player1"';
-
-            $carouselvid = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $carouselvid);
-
-            // echo $carouselvideos
-            echo $carouselvid;
-
-            ?>
-																																																																																										                                        </div>
-																																																																																										                                    <?php else: ?>
-																																																												                                        <div class="single-video-wrapper">
-																																																												                                            <img class="ratio" src="<?php bloginfo('template_directory');?>/assets/images/16x9.png"/>
-																																																												                                            <?php
-
-        // use preg_match to find iframe src
-        preg_match('/src="(.+?)"/', $carouselvid, $matches);
-        $src = $matches[1];
-
-        // add extra params to iframe src
-        $params = array(
-            'controls' => 1,
-            'hd' => 1,
-            'autohide' => 1,
-            'api' => 1,
-            'background' => 0,
-            'fullscreen' => true,
-            'player_id' => 'player1',
-        );
-
-        $new_src = add_query_arg($params, $src);
-
-        $carouselvid = str_replace($src, $new_src, $carouselvid);
-
-        // add extra attributes to iframe html
-        $attributes = 'id="player1"';
-
-        $carouselvid = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $carouselvid);
-
-        // echo $carouselvideos
-        echo $carouselvid;
-
-        ?>
-																																																												                                        </div>
-																																																												                                    <?php endif;?>
-
-																														                                    <?php
-endif;
-
-endwhile;
-
-else:
-
-    // no layouts found
-
-endif;
-
-?>
-
-                    </div>
-
-                    <div class="cursors">
-                        <span class="cursor cursorleft"></span>
-                        <span class="cursor cursorright"></span>
-                    </div>
-                </div>
-
-
-                <?php $classes = get_body_class();?>
+                <?php $classes = get_body_class();
+                    $client = get_field('client');
+                    $yearofwork = get_field('yearofwork');
+                    $typeofwork = get_field('typeofwork');
+                ?>
                 <div class="post-content">
-                    <div class="row">
+                    <div class="row row--intro">
                         <div class="col-sm-6 col-lg-6 seperate">
                             <div class="clientbox entry-content">
                                 <div class="row">
                                     <div class="col-xs-12 col-lg-12">
                                         <?php the_title('<h1 class="entry-title">', '</h1>');?>
                                     </div>
-                                    <div class="col-sm-5 col-lg-5">
-                                        <?php
-    $client = get_field('client');
-    if ($client): ?>
-                                            <p class="entry-texts"><?php echo $client; ?></p>
-                                        <?php else: ?>
-                                            <p class="entry-texts">Client name goes here</p>
-                                        <?php endif;?>
-                                    </div>
-                                    <div class="col-sm-3 col-lg-3">
-                                        <?php
-    $yearofwork = get_field('yearofwork');
-    if ($yearofwork): ?>
-                                            <p class="entry-texts "><?php echo $yearofwork; ?></p>
-                                        <?php else: ?>
-                                            <p class="entry-texts">Year goes here</p>
-                                        <?php endif;?>
+                                    <div class="col-xs-12 col-lg-12">
+                                    <p class="entry-texts"><?php echo $client; ?>, <?php echo $yearofwork; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -150,8 +26,7 @@ endif;
                         <div class="col-sm-12 col-lg-6">
                             <div class="type-of-work">
                                 <?php
-$typeofwork = get_field('typeofwork');
-if ($typeofwork): ?>
+                                if ($typeofwork): ?>
                                     <p class="entry-desc"><?php echo $typeofwork; ?></p>
                                 <?php else: ?>
                                     <p class="entry-desc">Works go here (i.e Art direction)</p>
@@ -165,28 +40,33 @@ if ($typeofwork): ?>
                                 <?php endif;?>
                             </div>
                         </div>
+                        </div>
                         <div class="row">
+                        <?php
+
+                            // check if the repeater field has rows of data
+                            if( have_rows('image_repeater') ):
+
+                                while ( have_rows('image_repeater') ) : the_row(); ?>
+
                             <div class="col-sm-12 col-lg-12">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/content.jpg" alt="">
+                                <img src="<?php echo get_sub_field('image')['url']; ?>" alt="" />
                             </div>
-                            <div class="col-sm-12 col-lg-12">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/content.jpg" alt="">
-                            </div>
-                            <div class="col-sm-12 col-lg-12">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/content.jpg" alt="">
-                            </div>
-                            <div class="col-sm-12 col-lg-12">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/content.jpg" alt="">
-                            </div>
+
+                                <?php endwhile;
+
+                            else :
+
+                                // no rows found
+
+                            endif;
+
+                            ?>
                         </div>
                     </div>
                 </div>
-
-                </div>
                 <?php
-ini_set("display_errors", 1);
 $post_id = get_the_ID();
-
 $cat_id = get_the_category($post_id);
 $term_id = $cat_id[0]->term_id;
 $good = array(29, 15);
@@ -222,6 +102,8 @@ if (in_array($term_id, $good)):
 
                 </div>
                 <?php endif;?>
+                </div>
+
             </div>
         </main>
     </div>
