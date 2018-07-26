@@ -4,7 +4,6 @@
         <main class="site-main" role="main">
             <div class="container" id="content">
                 <div id="post-<?php the_ID();?>" <?php post_class();?>>
-                <?php the_title('<h1 class="entry-title">', '</h1>');?>
 
                 <div class="sliderwrapper">
                     <div class="slider">
@@ -121,56 +120,41 @@ endif;
                 <?php $classes = get_body_class();?>
                 <div class="post-content">
                     <div class="row">
-                        <div class="col-sm-12 col-lg-4 seperate">
+                        <div class="col-sm-6 col-lg-6 seperate">
                             <div class="clientbox entry-content">
-                                <?php
-$client = get_field('client');
-if ($client): ?>
-                                    <h3>Client</h3>
-                                    <p><?php echo $client; ?></p>
-                                <?php else: ?>
-                                    <h3>Client</h3>
-                                    <p>Client name goes here</p>
-                                <?php endif;?>
+                                <div class="row">
+                                    <div class="col-xs-12 col-lg-12">
+                                        <?php the_title('<h1 class="entry-title">', '</h1>');?>
+                                    </div>
+                                    <div class="col-sm-5 col-lg-5">
+                                        <?php
+    $client = get_field('client');
+    if ($client): ?>
+                                            <p class="entry-texts"><?php echo $client; ?></p>
+                                        <?php else: ?>
+                                            <p class="entry-texts">Client name goes here</p>
+                                        <?php endif;?>
+                                    </div>
+                                    <div class="col-sm-3 col-lg-3">
+                                        <?php
+    $yearofwork = get_field('yearofwork');
+    if ($yearofwork): ?>
+                                            <p class="entry-texts "><?php echo $yearofwork; ?></p>
+                                        <?php else: ?>
+                                            <p class="entry-texts">Year goes here</p>
+                                        <?php endif;?>
+                                    </div>
+                                </div>
                             </div>
-                        <?php
-$yearofwork = get_field('yearofwork');
-if ($yearofwork): ?>
-                            <?php if (in_array('en-US', $classes)): ?>
-                                <h3>Year</h3>
-                            <?php else: ?>
-                                <h3>Année</h3>
-                            <?php endif;?>
-                            <p><?php echo $yearofwork; ?></p>
-                        <?php else: ?>
-                            <?php if (in_array('en-US', $classes)): ?>
-                                <h3>Year</h3>
-                            <?php else: ?>
-                                <h3>Année</h3>
-                            <?php endif;?>
-                            <p>Year goes here</p>
-                        <?php endif;?>
-
                         </div>
-
-                        <div class="col-sm-12 col-lg-8">
+                        <div class="col-sm-12 col-lg-6">
                             <div class="type-of-work">
                                 <?php
 $typeofwork = get_field('typeofwork');
 if ($typeofwork): ?>
-                                    <?php if (in_array('en-US', $classes)): ?>
-                                        <h3>Works</h3>
-                                    <?php else: ?>
-                                        <h3>Réalisations</h3>
-                                    <?php endif;?>
-                                    <p><?php echo $typeofwork; ?></p>
+                                    <p class="entry-desc"><?php echo $typeofwork; ?></p>
                                 <?php else: ?>
-                                    <?php if (in_array('en-US', $classes)): ?>
-                                        <h3>Works</h3>
-                                    <?php else: ?>
-                                        <h3>Réalisations</h3>
-                                    <?php endif;?>
-                                    <p>Works go here (i.e Art direction)</p>
+                                    <p class="entry-desc">Works go here (i.e Art direction)</p>
                                 <?php endif;?>
                             </div>
                             <div class="entry-content">
@@ -179,6 +163,20 @@ if ($typeofwork): ?>
                                     <?php else: ?>
 
                                 <?php endif;?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/content.jpg" alt="">
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/content.jpg" alt="">
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/content.jpg" alt="">
+                            </div>
+                            <div class="col-sm-12 col-lg-12">
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/content.jpg" alt="">
                             </div>
                         </div>
                     </div>
@@ -200,20 +198,22 @@ if (in_array($term_id, $good)):
     $wp_query = new WP_Query($args);
 
     ?>
-	                <div class="more-works">
+	            <div class="more-works">
 
-	                  <?php foreach ($wp_query->posts as $post): ?>
+                    <p class="more-works-title col-xs-12 col-lg-12">Voir aussi :</p>
 
-	                    <div class="entry-content col-sm-12 col-lg-4">
-	                      <a href="<?=get_the_permalink();?>" rel="bookmark"></a>
-	                      <?php if (has_post_thumbnail($post->ID)): ?>
-	                      <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');?>
-	                      <img src="<?php echo $image[0]; ?>" alt="">
-	                      <?php endif;?>
-                      <div class="entry-titles">
-                        <h3 class="entry-title">Dior</h3>
-                        <h3><?=$post->post_title;?></h3>
-                      </div>
+                    <?php foreach ($wp_query->posts as $post): ?>
+
+                    <div class="entry-content col-sm-12 col-lg-4">
+                        <a href="<?=get_the_permalink();?>" rel="bookmark"></a>
+                        <?php if (has_post_thumbnail($post->ID)): ?>
+                        <?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'single-post-thumbnail');?>
+                        <img src="<?php echo $image[0]; ?>" alt="">
+                        <?php endif;?>
+                        <div class="entry-titles">
+                            <h3 class="entry-title">Dior</h3>
+                            <h3><?=$post->post_title;?></h3>
+                        </div>
                     </div>
 
                   <?php endforeach;
