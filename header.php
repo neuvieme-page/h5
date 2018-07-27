@@ -8,6 +8,36 @@
 	<link rel="icon" href="<?php bloginfo('template_directory');?>/favicon.ico?v=2" />
 </head>
 <body <?php body_class();?>>
+
+	<div class="menuHeader">
+		<div class="menuHeader-texts">
+			<p class="menuHeader-title">Search Bar</p>
+			<p class="menuHeader-subtitle">Auto-suggestion mechanism</p>
+			<p class="menuHeader-desc">Impossible to write an unspecified keyword</p>
+		</div>	
+		<div>
+			<div class="menuHeader-searchbar">
+				<img class="menuHeader-logo" src="<?php bloginfo('template_directory');?>/assets/images/search-icon.svg" alt="Search Icon">
+				<input class="menuHeader-input" type="text">
+				<img class="menuHeader-clearInput" src="<?php bloginfo('template_directory');?>/assets/images/cross-icon.svg" alt="Cross Icon">
+			</div>
+			<ul class="menuHeader-list">
+				<li class="menuHeader-item">
+					<div class="menuHeader-flex">
+						<img class="menuHeader-item-img" src="<?php bloginfo('template_directory');?>/assets/images/content.jpg" alt="">
+						<div class="menuHeader-item-texts">
+							<p>Lacoste (2017)</p>
+							<p>Xmas</p>
+						</div>
+					</div>
+					<p class="menuHeader-item-category">FILM</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="<?php bloginfo('template_directory');?>/assets/js/menuHeader.js"></script>
+
 	<script src="<?php bloginfo('template_directory');?>/assets/js/early.js"></script>
 	<header class="site-header hideOnHome nav-down cf">
 		<?php
