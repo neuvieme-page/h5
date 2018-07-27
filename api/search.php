@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 
     define( 'WP_USE_THEMES', false );
-    require_once '../wp-load.php';
+    require_once '../../../../wp-load.php';
 
     $search_term = isset($_GET['s']) ? $_GET['s'] : 'lacoste';
 
