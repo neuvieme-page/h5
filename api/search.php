@@ -1,9 +1,33 @@
 <?php
 
-    $search_term = (String) $_GET['s'];
+header('Content-Type: application/json');
+
+    define( 'WP_USE_THEMES', false );
+    require_once '../wp-load.php';
+
+    $search_term = isset($_GET['s']) ? $_GET['s'] : 'paulin';
 
     $query = new WP_Query( array( 's' => $search_term ) );
 
-    print_r($query);
+    $formatPosts = array();
+
+    foreach($query->posts as $post) {
+
+        $client = get_field('client', $post->ID);
+        $yearofwork = get_field('yearofwork', $post->ID);
+        $typeofwork = get_field('typeofwork', $post->ID);
+        $secondTitle = get_field('second_title', $post->ID);
+
+        $formatPost = array(
+            'title' => $post->post_title,
+            'year' => $yearofwork,
+            'second_title' => $secondTitle,
+            'client' => $client
+        );
+
+        array_push($formatPosts,$formatPost);
+    }
+
+    die(json_encode($formatPosts));
 
 ?>
