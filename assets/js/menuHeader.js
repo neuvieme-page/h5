@@ -1,6 +1,8 @@
 var input = document.querySelector('.menuHeader-input');
 var clearInput = document.querySelector('.menuHeader-clearInput');
 var results = document.querySelector('.menuHeader-list');
+var pathInput = document.querySelector('.menuHeader-pathInput')
+var path = pathInput.value;
 
 var ajax = function(method, url, fn) {
     const xhr = new XMLHttpRequest();
@@ -22,7 +24,7 @@ input.addEventListener('keypress', function() {
         return
     }
 
-    ajax('GET', '../../api/search.php', function(data) {
+    ajax('GET', path, function(data) {
         results.innerHTML = '';
         var memo;
         for (let i = 0; i < data.length; i++) {
