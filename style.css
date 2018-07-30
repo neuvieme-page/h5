@@ -1268,17 +1268,21 @@ html {
   padding-left: 0;
 }
 .menuHeader-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   height: 80px;
-  box-sizing: border-box;
   background: #fefefe;
   border-radius: 20px;
   list-style: none;
-  padding: 0 20px;
   margin-bottom: 5px;
+}
+.menuHeader-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  padding: 0 20px;
 }
 .menuHeader-flex {
   display: flex;

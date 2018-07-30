@@ -13,19 +13,21 @@
 		<form action="" class="menuHeader-searchbar">
 			<img class="menuHeader-logo" src="<?php bloginfo('template_directory');?>/assets/images/search-icon.svg" alt="Search Icon">
 			<input class="menuHeader-input" type="text">
-			<input class="menuHeader-pathInput" type="hidden" value="<?php bloginfo('url');?>/php/menu.php">
+			<input class="menuHeader-pathInput" type="hidden" value="<?php bloginfo('url');?>/search.php">
 			<img class="menuHeader-clearInput" src="<?php bloginfo('template_directory');?>/assets/images/cross-icon.svg" alt="Cross Icon">
 		</form>
 		<ul class="menuHeader-list">
 			<li class="menuHeader-item">
-				<div class="menuHeader-flex">
-					<img class="menuHeader-item-img" src="<?php bloginfo('template_directory');?>/assets/images/content.jpg" alt="">
-					<div class="menuHeader-item-texts">
-						<p>Lacoste (2017)</p>
-						<p>Xmas</p>
+				<a class="menuHeader-link" href="">
+					<div class="menuHeader-flex">
+						<img class="menuHeader-item-img" src="<?php bloginfo('template_directory');?>/assets/images/content.jpg" alt="">
+						<div class="menuHeader-item-texts">
+							<p>Lacoste (2018)</p>
+							<p>Xmas</p>
+						</div>
 					</div>
-				</div>
-				<p class="menuHeader-item-category">FILM</p>
+					<p class="menuHeader-item-category">FILM</p>
+				</a>
 			</li>
 		</ul>
 	</div>
