@@ -1229,11 +1229,29 @@ html {
 .single-video-wrapper iframe {position:absolute;top:0;left:0;width:100%; height:100%;}
 
 .menuHeader {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100px);
+  transition: opacity 350ms, transform 350ms;
+}
+
+.showForm .menuHeader {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.searchBtn {
+  display: block;
+  margin: auto;
+}
+
+.menuHeader {
   position: absolute;
   z-index: 9991;
   top: 0;
   left: 0;
-  width: 50vw;
+  width: 100%;
   height: 100vh;
   padding: 0 80px;
   background: lightgrey;
@@ -1248,12 +1266,43 @@ html {
   display: flex;
   align-items: center;
   background: #ffffff;
-  margin-top: 20vw;
+  margin-top: 10vw;
 }
 .menuHeader-logo, .menuHeader-clearInput {
   width: 32px;
   height: 32px;
+  cursor: pointer;
+  opacity: 0.25;
 }
+.closePopin {
+  margin:25px auto;
+  background: none;
+  width: 50px;
+  height: 50px;
+  display: block;
+  border: none;
+  opacity: 0.5;
+  outline: none;
+}
+.closePopin:hover {
+  opacity: 1;
+}
+
+.menuHeader-clearInput {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms;
+}
+
+.typing .menuHeader-clearInput:hover {
+  opacity: 1;
+}
+
+.typing .menuHeader-clearInput {
+  opacity: 0.25;
+  pointer-events: auto;
+}
+
 .menuHeader-input {
   width: 100%;
   height: 90%;
@@ -3504,4 +3553,34 @@ p.entry-second {
 
 .row--intro {
   margin-bottom: 95px;
+}
+
+.logos {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.logo-item {
+  width: calc(25% - 20px);
+  padding:10%;
+  position: relative;
+  margin: 10px;
+}
+
+.logo-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%);
+}
+
+.logo-item img:hover {
+  filter: grayscale(0%);
 }

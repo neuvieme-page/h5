@@ -8,36 +8,26 @@
 	<link rel="icon" href="<?php bloginfo('template_directory');?>/favicon.ico?v=2" />
 </head>
 <body <?php body_class();?>>
-
-	<div class="menuHeader">	
+	<?php if (is_page(23) || is_page(41)): ?>
+	<div class="menuHeader">
+		<button class="closePopin">
+		<img src="<?php bloginfo('template_directory');?>/assets/images/cross-icon.svg" alt="Cross Icon">
+		</button>
 		<form action="" class="menuHeader-searchbar">
 			<img class="menuHeader-logo" src="<?php bloginfo('template_directory');?>/assets/images/search-icon.svg" alt="Search Icon">
-			<input class="menuHeader-input" type="text">
+			<input class="menuHeader-input" autofocus type="text">
 			<input class="menuHeader-pathInput" type="hidden" value="<?php bloginfo('url');?>/search.php">
 			<img class="menuHeader-clearInput" src="<?php bloginfo('template_directory');?>/assets/images/cross-icon.svg" alt="Cross Icon">
 		</form>
-		<ul class="menuHeader-list">
-			<li class="menuHeader-item">
-				<a class="menuHeader-link" href="">
-					<div class="menuHeader-flex">
-						<img class="menuHeader-item-img" src="<?php bloginfo('template_directory');?>/assets/images/content.jpg" alt="">
-						<div class="menuHeader-item-texts">
-							<p>Lacoste (2018)</p>
-							<p>Xmas</p>
-						</div>
-					</div>
-					<p class="menuHeader-item-category">FILM</p>
-				</a>
-			</li>
-		</ul>
+		<ul class="menuHeader-list"></ul>
 	</div>
+	<?php endif;?>
 
 	<script src="<?php bloginfo('template_directory');?>/assets/js/menuHeader.js"></script>
 
 	<script src="<?php bloginfo('template_directory');?>/assets/js/early.js"></script>
 	<header class="site-header hideOnHome nav-down cf">
-		<?php
-if (wp_is_mobile()) {?>
+		<?php if (wp_is_mobile()) {?>
 		<div class="mobile-top cf">
 			<div class="header-logo"><a href="http://h5.fr">H5</a></div>
 			<div class="header-lang">
@@ -108,12 +98,12 @@ if ($posts):
 
         if ($post_title == 'Work' || $post_title == 'Work fr') {
             $imgz = get_field('hover_slides');?>
-										<div class="sliding work hidden" data-kffader='{"name":"anim1", "time": 0.2, "fade": 1e-6}'>
-											<?php if ($imgz): ?>
-												<?php foreach ($imgz as $image): ?>
-										             <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-												<?php endforeach;?>
-										<?php endif;?>
+																								<div class="sliding work hidden" data-kffader='{"name":"anim1", "time": 0.2, "fade": 1e-6}'>
+																									<?php if ($imgz): ?>
+																										<?php foreach ($imgz as $image): ?>
+																								             <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+																										<?php endforeach;?>
+																	<?php endif;?>
 								</div>
 							<?php } else if ($post_title == 'Art' || $post_title == 'Art fr') {?>
 								<div class="sliding art hidden" data-kffader='{"name":"anim2", "time": 0.2, "fade": 1e-6}'>

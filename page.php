@@ -1,22 +1,23 @@
-<?php get_header(); ?>
+<?php get_header();?>
 	<div class="primary">
+    <button class="searchBtn">rechercher</button>
 		<main class="site-main" role="main">
 		    <div class="container">
 		        <script>window.useloadmore=true;</script>
                 <?php
-                    if ( have_posts() ): ?>
+if (have_posts()): ?>
                         <div class="masonry-grid">
                             <?php
-                            while ( have_posts() ) {
-                                the_post();
-                                the_content();
-                            } ?>
+while (have_posts()) {
+    the_post();
+    the_content();
+}?>
                         </div>
                         <?php
-                    else: ?>
+else: ?>
                     <script>window.early.done();</script>
-                <?php endif; ?>
+                <?php endif;?>
             </div>
 		</main>
 	</div>
-<?php get_footer(); ?>
+<?php get_footer();?>
